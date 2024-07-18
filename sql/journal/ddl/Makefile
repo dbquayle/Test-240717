@@ -1,7 +1,6 @@
 
 SRC.schema = journal.sql
-SRC.tables = journal-bank.sql journal-entity.sql journal-account.sql \
-	journal-xfer.sql
+SRC.tables = journal-xlog.sql
 
 PSQL=/usr/local/bin/psql
 
