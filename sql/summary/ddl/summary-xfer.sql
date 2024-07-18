@@ -40,6 +40,7 @@ create table if not exists summary.xfer_action (
 			*/
 );
 
+create unique index on summary.xfer_action(bridge_id);
 create index on summary.xfer_action(source_account_id);
 create index on summary.xfer_action(destination_account_id);
 
