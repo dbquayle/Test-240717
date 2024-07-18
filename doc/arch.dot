@@ -1,0 +1,18 @@
+digraph G {
+  bank1 [];
+  bank2 [];
+  bank3 [];
+
+  pg [];
+  orcd[];
+
+  uis[];
+
+  uis -> pg;
+  orcd -> pg;
+
+  orcd -> bank1;
+  orcd -> bank2;
+  orcd -> bank3;
+  
+}
