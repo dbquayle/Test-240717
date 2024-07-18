@@ -1,25 +1,36 @@
 digraph G {
 
-  cluster subgraph_adapter {
-      bank1 [];
-      bank2 [];
-      bank3 [];
+  edge[samehead=yes];
+  
+  subgraph cluster_adapter {
+    label="External Adapter Layer";
+    node[fillcolor=lightgreen, style=filled, label="Bank Adapter"];
+    
+    bank1 [];
+    bank2 [];
+    bank3 [];
   };
 
-  cluster subgraph_orc {
-    pg [];
-    orcd[];
+  subgraph cluster_orc {
+    label="Orchestration Layer";
+    node[style=filled];
+    
+    pg [shape=cylinder, fillcolor=cyan, label="RDS Postgres"];
+    orcd[shape=square, fillcolor=cyan, label="Orchestration"];
   };
 
-  cluster subgraph_ui {
-    uis[];
+  subgraph cluster_ui {
+    label="User Interface Layer";
+    node[style=filled];
+    
+    uis[shape=circle, fillcolor=yellow, label="API Service"];
   }
 
-  uis -> pg;
-  orcd -> pg;
+  uis -> pg [ headlabel="postgres"];
+  orcd -> pg [ headleabel="postgres"];
 
-  orcd -> bank1;
-  orcd -> bank2;
-  orcd -> bank3;
+  orcd -> bank1 [ headlabel="https"];
+  orcd -> bank2 [ headlabel="https"];
+  orcd -> bank3 [ headlabel="https"];
   
 }
