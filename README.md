@@ -39,9 +39,11 @@ a matching username to the Unix environment ) and then at the shell
 prompt run the make command.
 
 The dml directory contains a sample.sql SQL script to populate the
-tables with sample accounts.  The test.sql -- which, because of the
-use of UUIDs, requires some modification on each run -- contains a
-call to create a transfer.
+tables with sample accounts.  The test script will create a single
+transfer and modify it.
+
+The ample can be run with
+psql -f sample.sql
 
 This can be run with
 psql -f test.sql
