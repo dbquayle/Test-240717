@@ -36,6 +36,28 @@ and the database.  A simple and crude ACL can be implemented, but more
 complicated ones require more thought and are more bug-prone.  Failure
 with an ACL component is a high-risk proposition.
 
+### Endpoints
+
+The API service basically acts as a stub service to teh database.
+We don't want much logic in the service, since it basically is
+responsible for writing (initial) data for the run into the database
+and retrieving it.  The orchestration daemon should contain more
+business logic.
+
+For POST and PUT methods, we want the body to only speak
+application/json with a simple schema where possible.  JSONSchema
+should be used to define these schemata.
+
+#### /banks (GET, POST, PUT, DELETE)
+This endpoint is responsible for CRUD with the banks.
+For example the GET method would call the summary.get_banks()
+procedure and return that output in JSON format.
+
+#### /accounts (GET, POST, PUT, DELETE)
+This endpoint maps to the summary.accounts table.
+
+#### /
+
 ## Database, Orchestration, and Scheduler
 
 This is in the second layer, and the second layer is the heart of the
