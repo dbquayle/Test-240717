@@ -1,5 +1,4 @@
 digraph states {
-
 	new;
 	pending;
 	success;

@@ -1,4 +1,4 @@
-DOTSRC=arch.dot
+DOTSRC=arch.dot states.dot
 DOTSVG=$(DOTSRC:C/dot$/svg/g)
 
 DOT=/usr/local/bin/dot

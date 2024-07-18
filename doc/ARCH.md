@@ -53,6 +53,17 @@ disk for security.  Additional per-column security measures can also
 be taken and can be discussed elsewhere, with the caveat that some
 encryption approaches come at a performance cost.
 
+#### Summary schema
+
+This schema in the database contains the high level summary
+information visible through the Bridge UI.
+
+Establishing the access control list for the information here, i.e.,
+who can se what transaction, is a bit of an exercise and some care
+needs to be taken in how much access is to be granted.  Generally,
+Occam's Razor applies here in force, i.e., for the purpose of this
+exercise we should limit 
+
 ### Orchestration Daemon
 
 This requires a connection to the dadtabase.  I have tended to write
@@ -65,3 +76,21 @@ a view periodically or we can employ an event bus within the database
 via triggers.  For sake of simplicity, and because we wish to limit
 certain intersections within our dataset for parallel processing, we
 will poll a view on a periodic basis.
+
+The scheduling view is implemented in the stored procedure
+`summary.get_pending(int)` -- the argument taken in the procedure is
+the number of items on the queue to return to avoid discarding vast
+quantities of data.  The orchestration scheduler maintains a
+persistent connection to the database and polls it by calling that
+procedure on a periodic basis, like every 2-5 seconds as available
+execution slots become available.
+
+## External Adapter Layer
+
+As stated before, this is implemented either as a library or a
+service.  If implemented as a service, it would have to be on an
+internal network that is restricted to be callable only from the IPs
+of the Orchestration Layer.  Each component here provides a common
+interface.  Bank and account-specific parameters can be stored in JSON
+in the database tables for bank and accounts as necessary.  See the
+table definitions in the ddl directory for the details.

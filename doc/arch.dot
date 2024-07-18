@@ -16,8 +16,12 @@ digraph G {
     node[style=filled];
     
     pg [shape=cylinder, fillcolor=cyan, label="RDS Postgres"];
-    orcd[shape=square, fillcolor=cyan, label="Orchestration"];
-  };
+    oso [shape=square, fillcolor=cyan,
+    	label="Orchestration\nScheduling\nOVerlord"];
+    bow1[shape=square, fillcolor=cyan, label="Bridge\nOrchestration\nWorker" ];
+    bow2[shape=square, fillcolor=cyan, label="Bridge\nOrchestration\nWorker" ];
+    bow3[shape=square, fillcolor=cyan, label="Bridge\nOrchestration\nWorker" ];
+    bow4[shape=square, fillcolor=cyan, label="Bridge\nOrchestration\nWorker" ];	  };
 
   subgraph cluster_ui {
     label="User Interface Layer";
@@ -27,10 +31,15 @@ digraph G {
   }
 
   uis -> pg [ headlabel="postgres"];
-  orcd -> pg [ headleabel="postgres"];
+  oso -> pg [ headleabel="postgres"];
 
-  orcd -> bank1 [ headlabel="https"];
-  orcd -> bank2 [ headlabel="https"];
-  orcd -> bank3 [ headlabel="https"];
+  oso -> bow1;
+  oso -> bow2;
+  oso -> bow3;
+  oso -> bow4;
+
+  bow1 -> bank1 [ headlabel="https"];
+  bow2 -> bank2 [ headlabel="https"];
+  bow4 -> bank3 [ headlabel="https"];
   
 }
