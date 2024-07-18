@@ -1,5 +1,6 @@
 
-SRC.proc = get-accounts.sql get-banks.sql get-xfers.sql
+SRC.proc = get-accounts.sql get-banks.sql get-xfers.sql \
+	scheduler.sql
 
 PSQL=/usr/local/bin/psql
 

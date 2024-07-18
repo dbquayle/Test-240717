@@ -32,7 +32,8 @@ begin
 	inner join summary.account as da on x.destination_account_id = da.id
 	inner join summary.entity as se on sa.owner_entity_id = se.id
 	inner join summary.entity as de on da.owner_entity_id = de.id
-	where ( se.bridge_id = euuid or de.bridge_id = euuid ); -- OR is bad
+	where ( se.bridge_id = euuid or de.bridge_id = euuid ) -- OR is bad
+	order by x.id;
 end;
 $$ language plpgsql;
 
@@ -67,6 +68,7 @@ begin
 	inner join summary.account as da on x.destination_account_id = da.id
 	inner join summary.entity as se on sa.owner_entity_id = se.id
 	inner join summary.entity as de on da.owner_entity_id = de.id
-	where ( se.login_user = elog or de.login_user = elog ); -- OR is bad
+	where ( se.login_user = elog or de.login_user = elog ) -- OR is bad
+	order by x.id;
 end;
 $$ language plpgsql;

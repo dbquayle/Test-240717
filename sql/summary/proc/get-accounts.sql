@@ -18,6 +18,7 @@ begin
        	       a.update_time, e.bridge_id, a.account_config 
 	from summary.account as a
 	inner join summary.entity as e on e.id = a.owner_entity_id
-	where e.bridge_id = ouuid;
+	where e.bridge_id = ouuid
+	order by a.id;
 end;
 $$ language plpgsql;

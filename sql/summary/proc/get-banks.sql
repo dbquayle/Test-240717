@@ -30,6 +30,7 @@ begin
 	       b.create_time, b.update_time, 
        	       b.internal_adapter_config, 
        	       b.internal_adapter_url
-	from summary.bank as b;
+	from summary.bank as b
+	order by b.id;
 end;
 $$ language plpgsql;
