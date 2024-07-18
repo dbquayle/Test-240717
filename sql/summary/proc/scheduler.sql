@@ -97,6 +97,6 @@ begin
 
 	update summary.xfer_action
 	set xfer_state = xs, xfer_state_note = r, xfer_state_time = now()
-	where x.bridge_id = xid;
+	where bridge_id = xid;
 end;
 $$ language plpgsql;

@@ -13,7 +13,7 @@ create type summary.xfer_state_t as enum (
        'new', -- no action taken
        'pending', -- in progress
        'success', -- completed successfully
-       'cancelled' -- cancelled before completion
+       'cancelled', -- cancelled before completion
 
        /*
 	We have different levels of failure, because some will be graceful
@@ -21,7 +21,7 @@ create type summary.xfer_state_t as enum (
 	*/
 	'aborted', -- failure where either first subtans failed, or rollback
 		   -- was successful
-	'catastrophe', -- failure where we could not roll back
+	'catastrophe' -- failure where we could not roll back
 );
 
 create table if not exists summary.xfer_action (

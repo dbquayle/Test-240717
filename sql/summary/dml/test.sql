@@ -1,21 +1,37 @@
 select summary.create_xfer(
-       'test transfer', 100, 
-       'b2d69d67-d71a-4def-9b16-ba282aeed75b',
-       'd37d6e49-5d79-45eb-91cf-fec13fe00889'
+       'test transfer', 100,
+       '10000000-0000-0000-0000-000000000001',
+       '20000000-0000-0000-0000-000000000002'
 );
 
+select 'get_account()';
+select * from summary.get_accounts('00000000-0000-0000-0000-000000000001');
+select * from summary.get_accounts('00000000-0000-0000-0000-000000000002');
+
+select 'get_banks()';
+select * from summary.get_banks();
+
+select 'get_xfers()';
+select * from summary.get_xfers('00000000-0000-0000-0000-000000000001'::uuid);
+select * from summary.get_xfers('dbquayle');
+
+select 'Update the transfer';
+
+select summary.update_xfer(
+       (select bridge_id from summary.xfer_action limit 1),
+       'pending', 'test move to pending by D. Quayle in test.sql');
+
+select summary.update_xfer(
+       (select bridge_id from summary.xfer_action limit 1),
+       'success', 'test move to succeeded by D. Quayle in test.sql');
+
+select 'get_xfers()';
+select * from summary.get_xfers('00000000-0000-0000-0000-000000000001'::uuid);
+select * from summary.get_xfers('dbquayle');
+
+select 'Table dumps follow';
 
 select * from summary.bank;
-
 select * from summary.account;
-
 select * from summary.xfer_action;
-
 select * from summary.xfer_action_history;
-
-select * from summary.get_accounts('f7283fa3-943c-4beb-91a6-307dbfbac00b');
-select * from summary.get_accounts('66d14ef8-2d44-4098-92aa-a06955671342');
-
-select * from summary.get_banks();
-select * from summary.get_xfers('66d14ef8-2d44-4098-92aa-a06955671342');
-select * from summary.get_xfers('dbquayle');

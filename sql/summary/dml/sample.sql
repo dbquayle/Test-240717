@@ -67,7 +67,7 @@ insert into summary.entity (
        login_user
 
 ) values (
-  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
   'Douglas Quayle',
   '77 Massachusetts Avenue',
   'Cambridge',
@@ -80,7 +80,7 @@ insert into summary.entity (
 
   'dbquayle'
 ), (
-  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000002',
   'Bank of America',
   '1200 Post Road',
   'Darien',
@@ -100,8 +100,8 @@ insert into summary.account (
 	external_id,
 	owner_entity_id,
 	account_config
-)
-select gen_random_uuid(), b.id, 'BOFA-43223-2222', e.id, '{ "account": "2222" }'
+) select '20000000-0000-0000-0000-000000000002', b.id, 'BOFA-43223-2222', e.id,
+  	 '{ "account": "2222" }'
 from summary.entity as e
 cross join summary.bank as b
 where b.id = 1 and e.login_user = 'bofauser';
@@ -113,7 +113,7 @@ insert into summary.account (
 	owner_entity_id,
 	account_config
 )
-select gen_random_uuid(), b.id, '199292-0444-D', e.id,
+select '10000000-0000-0000-0000-000000000001', b.id, '199292-0444-D', e.id,
        '{ "account-number": "0444" }'
 from summary.entity as e
 cross join summary.bank as b
