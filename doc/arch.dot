@@ -1,12 +1,19 @@
 digraph G {
-  bank1 [];
-  bank2 [];
-  bank3 [];
 
-  pg [];
-  orcd[];
+  cluster subgraph_adapter {
+      bank1 [];
+      bank2 [];
+      bank3 [];
+  };
 
-  uis[];
+  cluster subgraph_orc {
+    pg [];
+    orcd[];
+  };
+
+  cluster subgraph_ui {
+    uis[];
+  }
 
   uis -> pg;
   orcd -> pg;
