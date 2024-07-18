@@ -14,6 +14,8 @@ create table if not exists summary.bank (
        postal_zip text not null,
        postal_country text not null,
 
+       aba_routing_number text not null,
+
        telephone_contact text not null,
        support_email text,
        support_website text,
