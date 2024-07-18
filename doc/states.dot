@@ -1,0 +1,19 @@
+digraph states {
+
+	new;
+	pending;
+	success;
+	cancelled;
+
+	aborted;
+	catastrophe;
+
+
+	new -> pending [ label="start_xfer()" ];
+	pending -> success [ label="succeed_xfer()" ];
+	new -> cancelled [ label="cancel_xfer()" ];
+	pending -> cancelled [ label="cancel_xfer()" ];
+
+	pending -> aborted [ label="fail_xfer(true)" ];
+	pending -> catastrophe [ label="fail_xfer(false)" ];
+}
