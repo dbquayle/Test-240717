@@ -1,7 +1,7 @@
 drop table if exists summary.entity;
 
 create table if not exists summary.entity (
-       id bigersial not null primary key,
+       id bigserial not null primary key,
 
        bridge_id uuid not null unique, -- same logic here as for accounts
 
@@ -13,7 +13,7 @@ create table if not exists summary.entity (
        postal_country text not null,
 
        email_address text,
-       telephone_number text not null,
+       telephone_number text not null
 );
 
 create unique index on summary.entity(bridge_id);

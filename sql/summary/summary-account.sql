@@ -12,14 +12,16 @@ create table if not exists summary.account (
 		 I do not make this the primary key of the table, because
 		 then the ordering is effectively random.
 	 */
-	 bank_id bigint not null references summary.bank,
+	 bank_id bigint not null references summary.bank
+	 	 on delete cascade,
 
 	 external_id text not null, --- external account number
 
 	 create_time timestamp not null default now(),
 	 update_time timestamp not null default now(),
 
-	 owner_entity_id bigint not null references summary.entity,
+	 owner_entity_id bigint not null references summary.entity
+	 		 on delete cascade,
 	 account_config jsonb not null -- individual credentials go here
 );
 

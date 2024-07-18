@@ -1,6 +1,7 @@
 
 SRC.schema = summary.sql
-SRC.tables = summary-bank.sql summary-entity.sql summary-account.sql
+SRC.tables = summary-bank.sql summary-entity.sql summary-account.sql \
+	summary-xfer.sql
 
 PSQL=/usr/local/bin/psql
 
