@@ -19,10 +19,10 @@ this is important a solution could be determined.  As stated above,
 this service should be very simple and basically act as a proxy to the
 stored procedures required to manage this in the database.
 
-## Database
+## Database, Orchestration, and Scheduler
 
 This is in the second layer, and the second layer is the heart of the
-application.  This layer requires the most security.
+application.  This layer requires the most security.  Generally speaking, when implementing a layer like this, I prefer to bar all inbound connections and only allow it to initialte connections to other components.
 
 ### Postgres
 
