@@ -1,7 +1,8 @@
 PROGRAM=osod
 
 CXXFLAGS=-O0 -g -Wall -std=c++20 -static
-CXXLIB+= -lpqxx
+CXXLIB+= -lpqxx -lpgcommon -lpgport -lintl -lssl -lcrypto -lz -lreadline \
+	-lexecinfo -lm 
 CXXLIBRARY+= -L/usr/local/lib
 CXXINCLUDE+= -I/usr/local/include
 

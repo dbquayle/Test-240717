@@ -48,6 +48,10 @@ For POST and PUT methods, we want the body to only speak
 application/json with a simple schema where possible.  JSONSchema
 should be used to define these schemata.
 
+Each of the following endpoints should support the form, e.g., for
+banks, /banks/_id_ (which is an integer for banks, uuid for all
+others) to provide a singlular record from the corresponding database table.
+
 #### /banks (GET, POST, PUT, DELETE)
 This endpoint is responsible for CRUD with the banks.
 For example the GET method would call the summary.get_banks()
@@ -56,7 +60,17 @@ procedure and return that output in JSON format.
 #### /accounts (GET, POST, PUT, DELETE)
 This endpoint maps to the summary.accounts table.
 
-#### /
+#### /entities (GET, POST, PUT, DELETE)
+This endpoint maps to the summary.entity table.
+
+#### /xfers (POST, GET)
+This endpoint is different.  The stored procedures supporting this for
+GET have two forms, one for /xfers/login/_user_ and one for
+/xfers/uuid/_uuid_.
+
+
+
+
 
 ## Database, Orchestration, and Scheduler
 
