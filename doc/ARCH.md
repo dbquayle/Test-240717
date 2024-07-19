@@ -68,10 +68,6 @@ This endpoint is different.  The stored procedures supporting this for
 GET have two forms, one for /xfers/login/_user_ and one for
 /xfers/uuid/_uuid_.
 
-
-
-
-
 ## Database, Orchestration, and Scheduler
 
 This is in the second layer, and the second layer is the heart of the
@@ -100,6 +96,16 @@ needs to be taken in how much access is to be granted.  Generally,
 Occam's Razor applies here in force, i.e., for the purpose of this
 exercise we should limit 
 
+#### Journal schema
+
+All calls to the external bank adapters are journalled in the xlog
+table. We don't really care what the account type is, the direction is
+what matters.  This is a sort of double-entry accounting, and the net
+money flow with this should be 0 at the end of each business day --
+assuming that transactions don't cross the midnight boundary.  We can
+write validatations to check this.  The xlog table has a success flag
+so we can note the transactions that fail and require rollback.
+
 ### Orchestration Daemon
 
 This requires a connection to the dadtabase.  I have tended to write
@@ -120,6 +126,15 @@ quantities of data.  The orchestration scheduler maintains a
 persistent connection to the database and polls it by calling that
 procedure on a periodic basis, like every 2-5 seconds as available
 execution slots become available.
+
+There are two components here:
+ * Orchestration Scheduling Overload (oso)
+ * Bridge Orchestration Worker (bow)
+
+A rough implementation of bow is included.  The transactions should
+succeed randomly about 95% of the time.  Unfortunately to run this
+requires manually specifying the UUIDs.  Those are specified in the
+test.sh script.
 
 ## External Adapter Layer
 
