@@ -27,7 +27,7 @@ some of the requests and responses may be required.
 
 ### Security
 
-As stateed, the transport for this should be over TLS/SSL.  User
+As stated, the transport for this should be over TLS/SSL.  User
 authentication shuold be done via OAuth.  If possible if the
 authentication manager is an external service and can manage access
 control lists, e.g., for specific users / bank account mappings, this
@@ -71,7 +71,7 @@ GET have two forms, one for /xfers/login/_user_ and one for
 ## Database, Orchestration, and Scheduler
 
 This is in the second layer, and the second layer is the heart of the
-application.  This layer requires the most security.  Generally speaking, when implementing a layer like this, I prefer to bar all inbound connections and only allow it to initialte connections to other components.
+application.  This layer requires the most security.  Generally speaking, when implementing a layer like this, I prefer to bar all inbound connections and only allow it to initiate connections to other components.
 
 ### Postgres
 
